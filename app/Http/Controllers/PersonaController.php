@@ -32,9 +32,15 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom' => 'required|String',
+            'ap' => 'required|String',
+            'am' => 'required|String',
+            'fecha_nac' => 'required|date',
+        ]);    
+
         Persona::create($request->all());
-        return redirect('/persona');
+        return redirect('/personas');
     }
 
     /**
@@ -51,7 +57,13 @@ class PersonaController extends Controller
      */
     public function update(Request $request, Persona $persona)
     {
-        //
+        $request->validate([
+            'nom' => 'required|String',
+            'ap' => 'required|String',
+            'am' => 'required|String',
+            'fecha_nac' => 'required|date',
+        ]);  
+
         $persona->update($request->all());
 
        return redirect()->route('personas.index');

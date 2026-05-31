@@ -2,82 +2,66 @@
 
 @section("content_admin")
 
-<div class="row justify-content-center">
-    <div class="col-md-6">
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
 
-        <div class="card">
+                    <div class="card-header bg-success text-white d-flex">
+                        <button type="button" class="btn btn-outline text-white" onclick="history.back()">&larr;</button>
+                        <h4 class="mb-0" style="padding-left: 28%;">{{$persona->nom}} {{$persona->ap}} {{$persona->am}}</h4>
+                    </div>
+                    
+                    <h4 style="padding-top: 2%; text-align: center;">Actualizar Datos</h4>
+                    
+                    <div class="card-body py-2 p-4">
+                        <form id="validaActualiza" action="{{route("personas.update",$persona)}}" method="post">
+                            @csrf
+                            @method("PUT")
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="nom" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="nom" name="nom" value="{{$persona->nom}}" required>
+                                </div>
+                            </div>
 
-            <div class="card-header bg-success text-white d-flex">
-                <button type="button" class="btn btn-outline text-white" onclick="history.back()">&larr;</button>
-                <h4 class="mb-0" style="padding-left: 28%;">{{$persona->nom}} {{$persona->ap}} {{$persona->am}}</h4>
-            </div>
-            
-            <h4 style="padding-top: 2%; text-align: center;">Actualizar Datos</h4>
-            
-            <div class="card-body py-2 p-4">
-                <form id="validaActualiza" action="{{route("personas.update",$persona)}}" method="post">
-                    @csrf
-                    @method("PUT")
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label for="nom" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nom" name="nom" value="{{$persona->nom}}" required>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="ap" class="form-label">Apellido Paterno</label>
+                                    <input type="text" class="form-control" id="ap" name="ap" value="{{$persona->ap}}" required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="am" class="form-label">Apellido Materno</label>
+                                    <input type="text" class="form-control" id="am" name="am" value="{{$persona->am}}" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <label for="fecha_nac" class="form-label">Fecha de nacimiento</label>
+                                <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" value="{{$persona->fecha_nac}}" max="2026-12-31" min="1950-12-31" required>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="reset" class="btn btn-outline-dark">
+                                    Borrar Datos
+                                </button>
+
+                                <button type="submit" class="btn btn-success px-4">
+                                    Guardar
+                                </button>
+                            </div>
+
+                        </form>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="ap" class="form-label">Apellido Paterno</label>
-                            <input type="text" class="form-control" id="ap" name="ap" value="{{$persona->ap}}" required>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label for="am" class="form-label">Apellido Materno</label>
-                            <input type="text" class="form-control" id="am" name="am" value="{{$persona->am}}" required>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-4">
-                        <label for="fecha_nac" class="form-label">Fecha de nacimiento</label>
-                        <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" value="{{$persona->fecha_nac}}" max="2026-12-31" min="1950-12-31" required>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <button type="reset" class="btn btn-outline-dark">
-                            Borrar Datos
-                        </button>
-
-                        <button type="submit" class="btn btn-success px-4">
-                            Guardar
-                        </button>
-                    </div>
-
-                </form>
-            </div>
-
+                </div>
         </div>
-
     </div>
 </div>
-
-
-<style>
-    label.error {
-        color: red;
-        font-size: 0.9em;
-        display: block;
-        margin-top: 5px;
-    }
-    input.error {
-        border: 1px solid red;
-    }
-</style>
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/additional-methods.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  
+<link rel="stylesheet" href="{{ asset('/css/mensajes.css') }}">
+  
 <script type="text/javascript">
 
     $(document).ready(function () {

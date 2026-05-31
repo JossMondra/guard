@@ -23,10 +23,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware('auth')->group(function () {
-    
+Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    
 
-    
+    Route::resource('/personas', PersonaController::class);
 });

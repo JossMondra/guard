@@ -16,6 +16,11 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src="{{ asset('/js/jquery.js') }}"></script>
+    <script src="{{ asset('/js/validate.js') }}"></script>
+    <script src="{{ asset('/js/additional.js') }}"></script>
+    <script src="{{ asset('/js/sweetalert2.js') }}"></script>
+
 </head>
 <body style="background-color:#f6f8fb">
     <div id="app">
@@ -67,7 +72,7 @@
                                         <span class="hide-menu">Guarderia</span>
                                     </li>
                                     <li class="sidebar-item">
-                                        <a class="sidebar-link text-dark" href="/Personas" aria-expanded="false">
+                                        <a class="sidebar-link text-dark" href="/personas" aria-expanded="false">
                                             <i class="ti ti-user-circle"></i>
                                             <span>Personas</span>
                                         </a>
