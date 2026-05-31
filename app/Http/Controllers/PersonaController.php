@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,8 @@ class PersonaController extends Controller
     public function index()
     {
         //
+        $personas = Persona::all();
+        return view('personas.index',compact('personas'));
     }
 
     /**
@@ -21,6 +24,7 @@ class PersonaController extends Controller
     public function create()
     {
         //
+        return view('personas.create');
     }
 
     /**
@@ -29,14 +33,8 @@ class PersonaController extends Controller
     public function store(Request $request)
     {
         //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Persona $persona)
-    {
-        //
+        Persona::create($request->all());
+        return redirect('/persona');
     }
 
     /**
@@ -45,6 +43,7 @@ class PersonaController extends Controller
     public function edit(Persona $persona)
     {
         //
+        return view('personas.edit', compact('persona'));
     }
 
     /**
@@ -53,6 +52,9 @@ class PersonaController extends Controller
     public function update(Request $request, Persona $persona)
     {
         //
+        $persona->update($request->all());
+
+       return redirect()->route('personas.index');
     }
 
     /**
@@ -61,5 +63,7 @@ class PersonaController extends Controller
     public function destroy(Persona $persona)
     {
         //
+        $persona->delete();
+        return redirect()->route('personas.index');
     }
 }
